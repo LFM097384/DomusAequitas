@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DomusAequitas 居所公平</title>
+    <link rel="stylesheet" href="https://unpkg.com/@fluentui/web-components@^2.0.0/dist/web-components.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="title-section">
+                    <h1 data-i18n="title">DomusAequitas 居所公平</h1>
+                    <p data-i18n="subtitle">公平分配房间和房租，基于个人出价和偏好</p>
+                </div>
+                <div class="language-switcher">
+                    <button id="langBtn" class="lang-btn">
+                        <span class="lang-icon">LANG</span>
+                        <span id="currentLang">中文</span>
+                        <span class="lang-arrow">▼</span>
+                    </button>
+                    <div id="langDropdown" class="lang-dropdown">
+                        <div class="lang-option" data-lang="zh">中文</div>
+                        <div class="lang-option" data-lang="en">English</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <h2 data-i18n="basic_info">基本信息设置</h2>
+                <div class="form-group">
+                    <label for="totalRent" data-i18n="total_rent">总房租 (镑/周):</label>
+                    <input type="number" id="totalRent" data-i18n-placeholder="rent_placeholder" placeholder="例如: 300" min="0" step="10">
+                </div>
+                
+                <div class="form-group">
+                    <label data-i18n="people_setting">人员设置:</label>
+                    <div id="peopleContainer">
+                        <!-- 动态生成人员输入框 -->
+                    </div>
+                    <fluent-button appearance="outline" id="addPersonBtn" class="add-btn">
+                        <span data-i18n="add_person">+ 添加人员</span>
+                    </fluent-button>
+                </div>
+            </section>
+
+            <section class="bids-section">
+                <h2 data-i18n="room_bidding">房间出价设置</h2>
+                                <div class="rooms-container" id="roomsContainer">
+                    <!-- 动态生成房间卡片 -->
+                </div>
+
+                <div class="action-buttons">
+                    <fluent-button appearance="outline" id="addRoomBtn" class="add-btn">
+                        <span data-i18n="add_room">+ 添加房间</span>
+                    </fluent-button>
+                    <fluent-button appearance="accent" id="calculateBtn" class="calculate-btn">
+                        <span data-i18n="calculate">计算公平分配</span>
+                    </fluent-button>
+                </div>
+            </section>
+
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <h2 data-i18n="results">分配结果</h2>
+                
+                <!-- 算法信息 -->
+                <div class="algorithm-info" id="algorithmInfo">
+                    <h3 data-i18n="algorithm">🧮 分配算法</h3>
+                    <div id="algorithmDetails"></div>
+                </div>
+                
+                <div class="results-grid">
+                    <div class="result-card allocation">
+                        <h3 data-i18n="room_allocation">房间分配</h3>
+                        <div id="allocationResult"></div>
+                    </div>
+                    
+                    <div class="result-card rents">
+                        <h3 data-i18n="final_rent">最终房租</h3>
+                        <div id="rentsResult"></div>
+                    </div>
+                    
+                    <div class="result-card summary">
+                        <h3 data-i18n="summary">分配摘要</h3>
+                        <div id="summaryResult"></div>
+                    </div>
+                    
+                    <div class="result-card fairness">
+                        <h3 data-i18n="fairness_analysis">公平性分析</h3>
+                        <div id="fairnessResult"></div>
+                    </div>
+                </div>
+                
+                <!-- 详细解释 -->
+                <div class="explanation-section">
+                    <div class="explanation-card">
+                        <h3 data-i18n="allocation_explanation">📋 分配过程解释</h3>
+                        <div id="allocationExplanation"></div>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3 data-i18n="rent_explanation">💰 房租计算解释</h3>
+                        <div id="rentExplanation"></div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="allocationChart"></canvas>
+                </div>
+                
+                <!-- PDF导出按钮 -->
+                <div class="export-section" id="exportSection" style="display: none;">
+                    <fluent-button appearance="accent" id="exportPdfBtn" class="export-btn">
+                        <span class="export-icon">PDF</span>
+                        <span data-i18n="export_pdf">导出PDF报告</span>
+                    </fluent-button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/@fluentui/web-components@^2.0.0/dist/web-components.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/jspdf@^2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/html2canvas@^1.4.1/dist/html2canvas.min.js"></script>
+    <script src="i18n.js"></script>
+    <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,963 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+    min-height: 100vh;
+    color: #263238;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    margin-bottom: 40px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0, 77, 64, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(178, 223, 219, 0.3);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.title-section {
+    flex: 1;
+    text-align: center;
+}
+
+.language-switcher {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+header h1 {
+    font-size: 3rem;
+    color: #00695c;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 105, 92, 0.1);
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #546e7a;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 4px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 16px rgba(0, 77, 64, 0.1);
+    border: 1px solid rgba(178, 223, 219, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+section h2 {
+    color: #00695c;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    border-bottom: 4px solid #26a69a;
+    padding-bottom: 15px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #00695c;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #b2dfdb;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f1f8e9;
+    box-shadow: 0 2px 8px rgba(0, 77, 64, 0.05);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #26a69a;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(38, 166, 154, 0.15);
+    transform: translateY(-2px);
+}
+
+.rooms-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.room-card {
+    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+    border-radius: 4px;
+    padding: 30px;
+    border: 2px solid #b2dfdb;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.room-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #26a69a, #00695c);
+}
+
+.room-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(38, 166, 154, 0.2);
+    border-color: #26a69a;
+}
+
+.room-card h3 {
+    color: #00695c;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.bid-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bid-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bid-input label {
+    font-weight: 600;
+    color: #00695c;
+    font-size: 0.9rem;
+}
+
+.bid-input input {
+    padding: 10px 12px;
+    border: 2px solid #b2dfdb;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.bid-input input:focus {
+    outline: none;
+    border-color: #26a69a;
+    box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.15);
+    transform: translateY(-2px);
+}
+
+.calculate-btn {
+    background: linear-gradient(135deg, #26a69a 0%, #00695c 100%);
+    color: white;
+    border: none;
+    padding: 18px 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(38, 166, 154, 0.3);
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(38, 166, 154, 0.4);
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.result-card {
+    background: #f1f8e9;
+    border-radius: 4px;
+    padding: 25px;
+    border: 2px solid #b2dfdb;
+}
+
+.result-card h3 {
+    color: #00695c;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.result-card.allocation {
+    border-left: 5px solid #26a69a;
+}
+
+.result-card.rents {
+    border-left: 5px solid #00897b;
+}
+
+.result-card.summary {
+    border-left: 5px solid #4dd0e1;
+}
+
+.allocation-item, .rent-item, .summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #b2dfdb;
+}
+
+.allocation-item:last-child, .rent-item:last-child, .summary-item:last-child {
+    border-bottom: none;
+}
+
+.allocation-item .room {
+    font-weight: 600;
+    color: #00695c;
+}
+
+.allocation-item .person {
+    color: #26a69a;
+    font-weight: 600;
+}
+
+.rent-item .room {
+    font-weight: 600;
+    color: #00695c;
+}
+
+.rent-item .amount {
+    color: #00897b;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.summary-item .label {
+    color: #00695c;
+}
+
+.summary-item .value {
+    font-weight: 600;
+    color: #4dd0e1;
+}
+
+.chart-container {
+    background: white;
+    border-radius: 4px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 500px;
+    position: relative;
+}
+
+.chart-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 420px !important;
+    max-height: none !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header {
+        padding: 25px;
+        margin-bottom: 30px;
+    }
+    
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .rooms-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    section {
+        padding: 25px;
+    }
+    
+    .calculate-btn {
+        padding: 15px 40px;
+        font-size: 1.1rem;
+    }
+}
+
+/* 加载动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.room-card {
+    animation: fadeInUp 0.6s ease-out;
+    animation-delay: 0.1s;
+    animation-fill-mode: both;
+}
+
+.room-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.room-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* 输入框聚焦动画 */
+.bid-input input:focus {
+    outline: none;
+    border-color: #26a69a;
+    box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.15);
+    transform: translateY(-2px);
+}
+
+/* 结果卡片动画 */
+.result-card {
+    animation: fadeInUp 0.6s ease-out;
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+}
+
+.result-card:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.result-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* 新增样式 */
+.person-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.person-input input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #b2dfdb;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f1f8e9;
+}
+
+.person-input input:focus {
+    outline: none;
+    border-color: #26a69a;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.15);
+}
+
+.remove-person-btn, .remove-room-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-person-btn:hover, .remove-room-btn:hover {
+    background: #c0392b;
+    transform: scale(1.1);
+}
+
+.add-btn {
+    background: linear-gradient(135deg, #00897b 0%, #004d40 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 137, 123, 0.3);
+    margin-bottom: 20px;
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 137, 123, 0.4);
+}
+
+.room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.room-header h3 {
+    margin: 0;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.action-buttons .add-btn {
+    margin-bottom: 0;
+}
+
+/* 最小房间和人员数量限制 */
+.room-card:only-child .remove-room-btn,
+.person-input:only-child .remove-person-btn {
+    display: none !important;
+}
+
+/* 算法信息和解释区域样式 */
+.algorithm-info {
+    background: linear-gradient(135deg, #26a69a 0%, #00695c 100%);
+    color: white;
+    border-radius: 4px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(38, 166, 154, 0.3);
+}
+
+.algorithm-info h3 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.algorithm-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.algorithm-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 4px solid rgba(255, 255, 255, 0.5);
+}
+
+.algorithm-item strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.algorithm-stages {
+    margin-top: 15px;
+}
+
+.algorithm-stages ul {
+    list-style: none;
+    padding: 0;
+}
+
+.algorithm-stages li {
+    background: rgba(255, 255, 255, 0.1);
+    margin: 5px 0;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.explanation-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.explanation-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 4px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #26a69a;
+}
+
+.explanation-card h3 {
+    color: #00695c;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.explanation-item {
+    background: #f1f8e9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border-left: 3px solid #26a69a;
+}
+
+.explanation-item:last-child {
+    margin-bottom: 0;
+}
+
+.explanation-item .step {
+    font-weight: 600;
+    color: #26a69a;
+    margin-bottom: 5px;
+}
+
+.explanation-item .detail {
+    color: #00695c;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.result-card.fairness {
+    border-left: 5px solid #0097a7;
+}
+
+.fairness-metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #b2dfdb;
+}
+
+.fairness-metric:last-child {
+    border-bottom: none;
+}
+
+.fairness-metric .label {
+    color: #00695c;
+    font-weight: 500;
+}
+
+.fairness-metric .value {
+    font-weight: 600;
+    color: #0097a7;
+}
+
+.satisfaction-bar {
+    background: #b2dfdb;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.satisfaction-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e74c3c, #f39c12, #27ae60);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.overall-fairness {
+    background: linear-gradient(135deg, #0097a7 0%, #006064 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.overall-fairness .score {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.overall-fairness .label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* 响应式设计更新 */
+@media (max-width: 768px) {
+    .explanation-section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .algorithm-details {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .explanation-card {
+        padding: 20px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .language-switcher {
+        margin-top: 20px;
+    }
+}
+
+/* 语言切换样式 */
+.lang-btn {
+    background: #26a69a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(38, 166, 154, 0.2);
+    min-width: 120px;
+}
+
+.lang-btn:hover {
+    background: #00695c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(38, 166, 154, 0.3);
+}
+
+.lang-icon {
+    font-size: 1.1rem;
+}
+
+.lang-arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.lang-btn.active .lang-arrow {
+    transform: rotate(180deg);
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    min-width: 160px;
+    margin-top: 8px;
+    border: 1px solid rgba(38, 166, 154, 0.2);
+}
+
+.lang-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-option {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #00695c;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lang-option:hover {
+    background: #26a69a;
+    color: white;
+}
+
+.lang-option.active {
+    background: #e0f2f1;
+    color: #26a69a;
+    font-weight: 600;
+}
+
+/* 界面优化 */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 4px;
+    padding: 25px;
+    border: 2px solid #b2dfdb;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.result-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.result-card h3 {
+    color: #00695c;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* 改进的动画效果 */
+.room-card {
+    background: linear-gradient(135deg, #f1f8e9 0%, #e9ecef 100%);
+    border-radius: 4px;
+    padding: 30px;
+    border: 2px solid #b2dfdb;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.room-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #26a69a, #00695c);
+}
+
+.room-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(38, 166, 154, 0.2);
+    border-color: #26a69a;
+}
+
+/* 改进的满意度显示 */
+.satisfaction-bar {
+    background: #b2dfdb;
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 8px 0;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.satisfaction-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e74c3c 0%, #f39c12 50%, #27ae60 100%);
+    border-radius: 6px;
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+}
+
+.satisfaction-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Fluent UI 按钮样式增强 */
+fluent-button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+fluent-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+fluent-button[appearance="accent"] {
+    background: #26a69a;
+    color: white;
+}
+
+fluent-button[appearance="outline"] {
+    border: 2px solid #26a69a;
+    color: #26a69a;
+    background: transparent;
+}
+
+fluent-button[appearance="outline"]:hover {
+    background: #26a69a;
+    color: white;
+}
+
+/* PDF导出区域样式 */
+.export-section {
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px;
+    background: #f1f8e9;
+    border-radius: 4px;
+    border: 2px dashed #26a69a;
+}
+
+.export-btn {
+    min-width: 200px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.export-icon {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+/* 输入框增强样式 */
+input[type="text"], input[type="number"] {
+    border: 2px solid #b2dfdb;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    border-color: #26a69a;
+    box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.1);
+    outline: none;
+    background: white;
+}
+
+/* 移除按钮样式增强 */
+.remove-person-btn, .remove-room-btn {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
+}
+
+.remove-person-btn:hover, .remove-room-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.5);
+}
+
+/* 标签样式增强 */
+label {
+    font-weight: 600;
+    color: #00695c;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 14px;
+}
